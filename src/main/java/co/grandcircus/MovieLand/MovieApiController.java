@@ -1,13 +1,9 @@
 package co.grandcircus.movieland;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.movieland.dao.MovieRepository;
 import co.grandcircus.movieland.entities.Movie;
@@ -23,7 +19,7 @@ public class MovieApiController {
 //		return new ModelAndView("redirect:/movies");
 //	}
 //	
-//	GetMapping filterable by; length, genre and rating.
+//	GetMapping filterable by; find all, length, genre and rating.
 //	@GetMapping("/movies")
 //	public List<Movie> listMovies(
 //			@RequestParam(value="length", required=false)Integer length,
@@ -31,4 +27,30 @@ public class MovieApiController {
 //			@RequestParam(value="rating", required=false)Double rating){
 //		
 //	}
+	
+//	GetMapping for the watchlist
+//	@GetMapping("/watchlist")
+//	public List<Movie> showWatchlist(){
+//		
+//	}
+	
+//	GetMapping to display details of an individual movie
+//  @GetMapping("/details")
+//	public Movie showMovieDetail(){
+//	
+//  }
+	
+//	PutMapping for adding to watchlist
+//	@PutMapping("/watchlist-add")
+//	public Movie addToWatchlist() {
+//		
+//	}
+
+//	DeleteMapping to delete from watchlist
+//	@DeleteMapping("/watchlist-delete")
+//	public Movie removeFromWatchlist() {
+//		
+//	}
+	
+	
 }
