@@ -20,7 +20,6 @@ public class Movie implements Serializable{
 	private Boolean adult;
 	private String overview;
 	private String releaseDate;
-	private Integer[] genreIds;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String originalTitle;
@@ -62,14 +61,6 @@ public class Movie implements Serializable{
 
 	public void setReleaseDate(String releaseDate) {
 		this.releaseDate = releaseDate;
-	}
-
-	public Integer[] getGenreIds() {
-		return genreIds;
-	}
-
-	public void setGenreIds(Integer[] genreIds) {
-		this.genreIds = genreIds;
 	}
 
 	public Long getId() {
@@ -147,7 +138,7 @@ public class Movie implements Serializable{
 	@Override
 	public String toString() {
 		return "Movie [posterPath=" + posterPath + ", adult=" + adult + ", overview=" + overview + ", releaseDate="
-				+ releaseDate + ", genreIds=" + Arrays.toString(genreIds) + ", id=" + id + ", originalTitle="
+				+ releaseDate + ", genreIds=" + ", id=" + id + ", originalTitle="
 				+ originalTitle + ", originalLanguage=" + originalLanguage + ", title=" + title + ", backdropPath="
 				+ backdropPath + ", popularity=" + popularity + ", voteCount=" + voteCount + ", video=" + video
 				+ ", voteAverage=" + voteAverage + "]";
