@@ -1,4 +1,5 @@
-package co.grandcircus.MovieLand.entities;
+package co.grandcircus.movieland.entities;
+
 
 import java.io.Serializable;
 import java.util.Arrays;

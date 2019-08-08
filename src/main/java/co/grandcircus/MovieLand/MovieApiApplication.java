@@ -1,4 +1,4 @@
-package co.grandcircus.MovieLand;
+package co.grandcircus.movieland;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

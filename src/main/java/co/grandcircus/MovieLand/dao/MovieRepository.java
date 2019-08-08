@@ -1,8 +1,10 @@
-package co.grandcircus.MovieLand.dao;
+package co.grandcircus.movieland.dao;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import co.grandcircus.movieapi.entities.Movie;
+import co.grandcircus.movieland.entities.Movie;
+
 
 
 
