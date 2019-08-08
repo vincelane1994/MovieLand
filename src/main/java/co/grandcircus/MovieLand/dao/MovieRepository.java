@@ -13,5 +13,6 @@ import co.grandcircus.movieland.entities.Movie;
 public interface MovieRepository extends JpaRepository<Movie, Long>{
 	List<Movie> findByGenreContainsIgnoreCase(String genre);
 	List<Movie> findByLength(Integer length);
+	List<Movie> findByRating(Double rating);
 	
 }
