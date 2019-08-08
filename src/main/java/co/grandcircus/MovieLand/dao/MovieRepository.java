@@ -1,4 +1,4 @@
-package co.grandcircus.movieapi.dao;
+package co.grandcircus.MovieLand.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

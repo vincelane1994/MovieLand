@@ -1,4 +1,4 @@
-package co.grandcircus.movieapi;
+package co.grandcircus.MovieLand;
 
 import org.springframework.stereotype.Controller;
 
