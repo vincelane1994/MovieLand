@@ -2,7 +2,7 @@ package co.grandcircus.movieland.entities;
 
 import java.text.NumberFormat;
 
-
+import java.util.Arrays;
 import java.util.Arrays;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +37,6 @@ public class Movie {
 	private Double popularity;
 	@JsonProperty("vote_count")
 	private Long voteCount;
-
 	private Boolean video;
 	@JsonProperty("vote_average")
 	private Double voteAverage;

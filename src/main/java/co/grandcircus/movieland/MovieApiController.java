@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -24,7 +25,6 @@ public class MovieApiController {
 
 	@Autowired
 	ApiService api;
-
 	
 	@RequestMapping("/release-year")
 	public ModelAndView releaseYear() {
@@ -58,10 +58,28 @@ public class MovieApiController {
 //	}
 	
 	@RequestMapping("/movie/detail")
-	public ModelAndView movieDetail() {
+	public ModelAndView movieDetail(
+			@RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView("detail");
-		mv.addObject("movies", api.movieDetail(30));
+		mv.addObject("movies", api.movieDetail(id));
 		return mv;
 
 	}	
+
+	
+//	@RequestMapping("/release-year")
+//	public ModelAndView releaseYear() {
+//		List<Movie> bigList = new ArrayList<>();
+//		String string1 = "testing";
+//		int pageSize = 20;
+//		ModelAndView mv = new ModelAndView("release-year");
+//		for (int counter = 1; counter < pageSize; counter++) {
+//			bigList.addAll(api.getMovieList(counter, 2000));
+//		}
+//			mv.addObject("movies", bigList);
+//			System.out.println(bigList);
+//		mv.addObject("movies", bigList);
+//		
+//			return mv;
+//	}
 }

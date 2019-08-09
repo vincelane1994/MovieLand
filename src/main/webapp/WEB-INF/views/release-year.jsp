@@ -25,7 +25,7 @@
 			<tbody>
 				<c:forEach var="each" items="${movies}">
 				<tr>
-				<td>${each.title}</td>
+				<td><a href="/movie/detail?id=${each.id}">${each.title}</a></td>
 					<td>${each.overview}</td>
 				
 					
