@@ -55,5 +55,11 @@ public class ApiService {
 		System.out.println(movie);
 		return movie;
 	}
+	
+	public List<Movie> getTitle(String title){
+		String url = "https://api.themoviedb.org/3/search/movie?api_key=" + API_KEY+"&language=en-US&query=" +title;
+		Result result = restTemplate.getForObject(url, Result.class);
+		return result.getResults();
+	}
 
 }

@@ -1,13 +1,20 @@
 package co.grandcircus.movieland;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.grandcircus.movieland.entities.*;
 import co.grandcircus.movieland.dao.ApiService;
 import co.grandcircus.movieland.entities.Movie;
 
@@ -33,6 +40,16 @@ public class MovieApiController {
 		mv.addObject("movies", bigList);
 		return mv;
 	}
+
+	
+	@RequestMapping("/movie")
+	public ModelAndView listMovie(@RequestParam(value = "title", required = true) String title){
+		ModelAndView mv = new ModelAndView ("title");
+		mv.addObject("title", api.getTitle(title));
+		
+		return mv;
+	}
+		
 	
 //	@RequestMapping("/title-search")
 //	public ModelAndView index() {
