@@ -16,9 +16,8 @@ import co.grandcircus.movieland.entities.Result;
 public class ApiService {
 
 	private RestTemplate restTemplate;
-//	@Value("${movieDB.API_KEY}")
-//	private String API_KEY;
-	private String API_KEY = "8a74085b81c83cc34680aeef8529213a";
+	@Value("${movieDB.API_KEY}")
+	private String API_KEY;
 
 	{
 		ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {

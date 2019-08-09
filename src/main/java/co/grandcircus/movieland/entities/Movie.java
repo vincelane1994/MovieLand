@@ -23,7 +23,6 @@ public class Movie {
 	private Long id;
 	private String originalTitle;
 	private String originalLanguage;
-	@JsonProperty("title")
 	private String title;
 	private String backdropPath;
 	private Double popularity;
