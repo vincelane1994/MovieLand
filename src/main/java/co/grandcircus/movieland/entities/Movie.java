@@ -1,7 +1,6 @@
 package co.grandcircus.movieland.entities;
 
 
-import java.io.Serializable;
 import java.util.Arrays;
 
 import javax.persistence.Entity;
@@ -10,11 +9,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name="movies")
-public class Movie implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+public class Movie {
 	
 	private String posterPath;
 	private Boolean adult;
@@ -24,6 +23,7 @@ public class Movie implements Serializable{
 	private Long id;
 	private String originalTitle;
 	private String originalLanguage;
+	@JsonProperty("title")
 	private String title;
 	private String backdropPath;
 	private Double popularity;

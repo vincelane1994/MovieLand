@@ -1,4 +1,4 @@
-package co.grandcircus.movieland;
+package co.grandcircus.movieland.dao;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import co.grandcircus.movieland.entities.Movie;
+import co.grandcircus.movieland.entities.Result;
 
 @Component
 public class ApiService {
@@ -27,17 +28,23 @@ public class ApiService {
 		restTemplate = new RestTemplateBuilder().additionalInterceptors(interceptor).build();
 	}
 
-	public String getMovieByTitle(String title) {
-		String url = "https://api.themoviedb.org/3/movie/76340?api_key=" + API_KEY + "&query=" + title;
+//	public List<Movie> getMovies() {
+//		String url = "https://api.themoviedb.org/3/movie?api_key=" + API_KEY;
+//		Result response = restTemplate.getForObject(url, Result.class);
+//		return response.getResults();
+//	}
+	
+	public String getMovieById(Long id) {
+		String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + API_KEY;
 	
 		Movie response = restTemplate.getForObject(url, Movie.class);
 		return response.getTitle();
 	}
 	
-//	public List<Movie> getTopRated() {
-//		String url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + API_KEY + "&language=en-US&page=1";
-//		Movie response = restTemplate.getForObject(url, Movie.class);
-//		return response;
-//	}
+	public List<Movie> getMovieList() {
+		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&page=200";
+		Result results = restTemplate.getForObject(url, Result.class);
+		return results.getResults();
+	}
 
 }
