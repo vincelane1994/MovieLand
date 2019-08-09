@@ -40,8 +40,8 @@ public class ApiService {
 		return response.getTitle();
 	}
 	
-	public List<Movie> getMovieList() {
-		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&page=200";
+	public List<Movie> getMovieList(int page) {
+		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&page=" + page;
 		Result results = restTemplate.getForObject(url, Result.class);
 		return results.getResults();
 	}

@@ -29,8 +29,8 @@ public class MovieApiController {
 	@RequestMapping("/")
 	public ModelAndView indexPost(){
 		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("movies", api.getMovieList());
-		System.out.println(api.getMovieList());
+		mv.addObject("movies", api.getMovieList(30));
+		System.out.println(api.getMovieList(30));
 		return mv;
 	}
 		
