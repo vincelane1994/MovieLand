@@ -51,12 +51,6 @@ public class MovieApiController {
 	}
 		
 	
-//	@RequestMapping("/title-search")
-//	public ModelAndView index() {
-//		System.out.println("Movie " + api.getMovieByTitle("Rocky"));
-//		return new ModelAndView("title-search", "movie", api.getMovieByTitle("Rocky"));
-//	}
-	
 	@RequestMapping("/movie/detail")
 	public ModelAndView movieDetail(
 			@RequestParam("id") int id) {
@@ -67,19 +61,5 @@ public class MovieApiController {
 	}	
 
 	
-//	@RequestMapping("/release-year")
-//	public ModelAndView releaseYear() {
-//		List<Movie> bigList = new ArrayList<>();
-//		String string1 = "testing";
-//		int pageSize = 20;
-//		ModelAndView mv = new ModelAndView("release-year");
-//		for (int counter = 1; counter < pageSize; counter++) {
-//			bigList.addAll(api.getMovieList(counter, 2000));
-//		}
-//			mv.addObject("movies", bigList);
-//			System.out.println(bigList);
-//		mv.addObject("movies", bigList);
-//		
-//			return mv;
-//	}
+
 }
