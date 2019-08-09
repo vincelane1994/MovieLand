@@ -1,13 +1,15 @@
 package co.grandcircus.movieland;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.movieland.dao.ApiService;
+import co.grandcircus.movieland.entities.Movie;
 
 @Controller
 public class MovieApiController {
@@ -16,24 +18,21 @@ public class MovieApiController {
 	@Autowired
 	ApiService api;
 
-
-//	@RequestMapping("/")
-//	public ModelAndView index() {
-//		System.out.println("Movie " + api.getMovieById(2343));
-//		ModelAndView mv = new ModelAndView("index");
-//		mv.addObject("movie", api.getMovieById(3242));
-//		
-//		return mv;
-//	}
 	
-	@RequestMapping("/")
-	public ModelAndView indexPost(){
-		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("movies", api.getMovieList(30));
-		System.out.println(api.getMovieList(30));
+	@RequestMapping("/release-year")
+	public ModelAndView releaseYear() {
+		List<Movie> bigList = new ArrayList<>();
+		String string1 = "testing";
+		int pageSize = 20;
+		ModelAndView mv = new ModelAndView("release-year");
+		for (int counter = 1; counter < pageSize; counter++) {
+			bigList.addAll(api.getMovieList(counter, 2000));
+		}
+			mv.addObject("movies", bigList);
+			System.out.println(bigList);
+		mv.addObject("movies", bigList);
 		return mv;
 	}
-		
 	
 //	@RequestMapping("/title-search")
 //	public ModelAndView index() {
@@ -46,5 +45,6 @@ public class MovieApiController {
 		ModelAndView mv = new ModelAndView("detail");
 		mv.addObject("movies", api.movieDetail(30));
 		return mv;
-	}
+
+	}	
 }

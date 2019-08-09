@@ -1,9 +1,9 @@
 package co.grandcircus.movieland.entities;
 
-
 import java.text.NumberFormat;
-import java.util.Arrays;
 
+
+import java.util.Arrays;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,26 +13,31 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="movies")
+@Table(name = "movies")
 public class Movie {
+
 	@JsonProperty("poster_path")
+
 	private String posterPath;
 	private Boolean adult;
 	private String overview;
 	@JsonProperty("release_date")
 	private String releaseDate;
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@JsonProperty("original_title")
 	private String originalTitle;
 	@JsonProperty("original_language")
 	private String originalLanguage;
+	private Genre[] genres;
 	private String title;
 	@JsonProperty("backdrop_path")
 	private String backdropPath;
 	private Double popularity;
 	@JsonProperty("vote_count")
 	private Long voteCount;
+
 	private Boolean video;
 	@JsonProperty("vote_average")
 	private Double voteAverage;
@@ -132,6 +137,14 @@ public class Movie {
 		this.originalLanguage = originalLanguage;
 	}
 
+	public Genre[] getGenres() {
+		return genres;
+	}
+
+	public void setGenres(Genre[] genres) {
+		this.genres = genres;
+	}
+
 	public String getTitle() {
 		return title;
 	}
@@ -164,29 +177,12 @@ public class Movie {
 		this.voteCount = voteCount;
 	}
 
-	public Boolean getVideo() {
-		return video;
-	}
-
-	public void setVideo(Boolean video) {
-		this.video = video;
-	}
-
-	public Double getVoteAverage() {
-		return voteAverage;
-	}
-
-	public void setVoteAverage(Double voteAverage) {
-		this.voteAverage = voteAverage;
-	}
-
 	@Override
 	public String toString() {
 		return "Movie [posterPath=" + posterPath + ", adult=" + adult + ", overview=" + overview + ", releaseDate="
-				+ releaseDate + ", genreIds=" + ", id=" + id + ", originalTitle="
-				+ originalTitle + ", originalLanguage=" + originalLanguage + ", title=" + title + ", backdropPath="
-				+ backdropPath + ", popularity=" + popularity + ", voteCount=" + voteCount + ", video=" + video
-				+ ", voteAverage=" + voteAverage + "]";
+				+ releaseDate + ", id=" + id + ", originalTitle=" + originalTitle + ", originalLanguage="
+				+ originalLanguage + ", genres=" + Arrays.toString(genres) + ", title=" + title + ", backdropPath="
+				+ backdropPath + ", popularity=" + popularity + ", voteCount=" + voteCount + "]";
 	}
 
 }
