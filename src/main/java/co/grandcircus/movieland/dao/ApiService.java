@@ -21,6 +21,7 @@ public class ApiService {
 	@Value("${movieDB.API_KEY}")
 	private String API_KEY;
 
+
 	{
 		ClientHttpRequestInterceptor interceptor = (request, body, execution) -> {
 			request.getHeaders().add(HttpHeaders.USER_AGENT, "Spring");
@@ -40,12 +41,6 @@ public class ApiService {
 		Movie response = restTemplate.getForObject(url, Movie.class);
 		return response.getTitle();
 	}
-	
-//	public List<Movie> getMovieList(int page) {
-//		String url = "https://api.themoviedb.org/3/discover/movie?release_dates?=2007-07-26/api_key=" + API_KEY + "&page=" + page;
-//		Result results = restTemplate.getForObject(url, Result.class);
-//		return results.getResults();
-//	}
 	
 	public List<Movie> getMovieList(int page, int year) {
 		String url1 = "https://api.themoviedb.org/3/discover/movie?api_key=8a74085b81c83cc34680aeef8529213a&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=" + page + "&primary_release_year=" + year;
