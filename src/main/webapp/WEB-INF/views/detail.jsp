@@ -12,10 +12,12 @@
 <h1>${movies.title}</h1>
 <a href="https://image.tmdb.org/t/p/original/${movies.posterPath}"><img src="https://image.tmdb.org/t/p/original/${movies.posterPath}"/></a>
 <div>
-<p>Length: ${movies.runtime}mins</p>
-<p>Release Date: ${movies.releaseDate}</p>
-<p>Revenue: ${movies.revenue}</p>
-<p>Budget: ${movies.budget}</p>
+<table>
+	<tr><td>Length: </td><td>${movies.runtime}mins</td></tr>
+	<tr><td>Release Date: </td><td>${movies.releaseDate}</td></tr>
+	<tr><td>Revenue: </td><td>${movies.revenue}</td></tr>
+	<tr><td>Budget: </td><td>${movies.budget}</td></tr>
+</table>
 <p><h4>Overview</h4>${movies.overview}</p>
 
 
