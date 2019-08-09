@@ -1,6 +1,7 @@
 package co.grandcircus.movieland.entities;
 
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 
 import javax.persistence.Entity;
@@ -14,21 +15,66 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name="movies")
 public class Movie {
-	
+	@JsonProperty("poster_path")
 	private String posterPath;
 	private Boolean adult;
 	private String overview;
+	@JsonProperty("release_date")
 	private String releaseDate;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	@JsonProperty("original_title")
 	private String originalTitle;
+	@JsonProperty("original_language")
 	private String originalLanguage;
 	private String title;
+	@JsonProperty("backdrop_path")
 	private String backdropPath;
 	private Double popularity;
+	@JsonProperty("vote_count")
 	private Long voteCount;
 	private Boolean video;
+	@JsonProperty("vote_average")
 	private Double voteAverage;
+	private Integer runtime;
+	private String revenue;
+	private String homepage;
+	private String budget;
+	
+
+
+	public String getBudget() {
+		return budget;
+	}
+
+	public void setBudget(String budget) {
+		this.budget = budget;
+	}
+
+	public String getHomepage() {
+		return homepage;
+	}
+
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+
+	public String getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(int revenue) {
+		NumberFormat defaultFormat = NumberFormat.getCurrencyInstance();
+		this.revenue = defaultFormat.format(revenue);
+	}
+
+	public int getRuntime() {
+		return runtime;
+	}
+
+	public void setRuntime(int runtime) {
+		this.runtime = runtime;
+	}
 
 	public String getPosterPath() {
 		return posterPath;

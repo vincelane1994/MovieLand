@@ -40,4 +40,11 @@ public class MovieApiController {
 //		System.out.println("Movie " + api.getMovieByTitle("Rocky"));
 //		return new ModelAndView("title-search", "movie", api.getMovieByTitle("Rocky"));
 //	}
+	
+	@RequestMapping("/movie/detail")
+	public ModelAndView movieDetail() {
+		ModelAndView mv = new ModelAndView("detail");
+		mv.addObject("movies", api.movieDetail(30));
+		return mv;
+	}
 }

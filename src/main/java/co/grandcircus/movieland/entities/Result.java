@@ -10,6 +10,7 @@ public class Result {
 	private List<Movie> results;
 	private Integer totalResults;
 	private Integer totalPages;
+	private Movie result;
 
 	public Integer getPage() {
 		return page;
@@ -19,6 +20,9 @@ public class Result {
 	}
 	public List<Movie> getResults() {
 		return results;
+	}
+	public Movie getResult() {
+		return result;
 	}
 	public void setResults(List<Movie> results) {
 		this.results = results;
