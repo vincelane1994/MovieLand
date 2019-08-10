@@ -59,5 +59,19 @@ public class MovieApiController {
 		return mv;
 
 	}	
+	
+	@RequestMapping("/index")
+	public ModelAndView runtimeLists() {
+		ModelAndView mv = new ModelAndView("index");
+		List<Movie> bigList = new ArrayList<>();
+		int pageSize = 20;
+		for (int counter = 1; counter < pageSize; counter++) {
+			bigList.addAll(api.getRTGT(counter, 900));
+		}
+			mv.addObject("movies", bigList);
+			System.out.println(bigList);
+		mv.addObject("movies", bigList);
+		return mv;
+	}
 
 }
