@@ -16,20 +16,19 @@
 
 		<h1>Movie Land</h1>
 
-	<table class="table">
+		<table class="table">
 			<thead>
 				<tr>
-					<th>Title</th><th>Overview</th>
+					<th>Title</th>
+					<th>Overview</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach var="each" items="${movies}">
-				<tr>
-				<td><a href="/movie/detail?id=${each.id}">${each.title}</a></td>
-					<td>${each.overview}</td>
-				
-					
-				</tr>
+					<tr>
+						<td><a href="/detail?id=${each.id}">${each.title}</a></td>
+						<td>${each.overview}</td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>

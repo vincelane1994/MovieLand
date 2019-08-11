@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,55 +22,80 @@ import co.grandcircus.movieland.entities.Movie;
 @Controller
 public class MovieApiController {
 
+	@Value("${movieDB.API_KEY}")
+	private String API_KEY;
+	private String runtimeGT = "&with_runtime.gte=";
+	private String runtimeLT = "&with_runtime.lte=";
+	private String releaseYear = "&primary_release_year=";
+	private String listBase = "https://api.themoviedb.org/3/discover/movie?api_key=";
+	private String listMiddle = "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=";
+	private String titleBase = "https://api.themoviedb.org/3/search/movie?api_key=";
+	private String titleMiddle = "&language=en-US&query=";
+	private String detailBase = "https://api.themoviedb.org/3/movie/";
+	private String detailMiddle = "?api_key=";
+	private String detailEnd = "&language=en-US";
 
 	@Autowired
 	ApiService api;
-	
-	@RequestMapping("/release-year")
-	public ModelAndView releaseYear() {
-		List<Movie> bigList = new ArrayList<>();
-		String string1 = "testing";
-		int pageSize = 20;
-		ModelAndView mv = new ModelAndView("release-year");
-		for (int counter = 1; counter < pageSize; counter++) {
-			bigList.addAll(api.getMovieList(counter, 2000));
-		}
-			mv.addObject("movies", bigList);
-			System.out.println(bigList);
-		mv.addObject("movies", bigList);
-		return mv;
-	}
 
-	
-	@RequestMapping("/movie")
-	public ModelAndView listMovie(@RequestParam(value = "title", required = true) String title){
-		ModelAndView mv = new ModelAndView ("title");
-		mv.addObject("title", api.getTitle(title));
-		
-		return mv;
-	}
-		
-	
-	@RequestMapping("/movie/detail")
-	public ModelAndView movieDetail(
-			@RequestParam("id") int id) {
-		ModelAndView mv = new ModelAndView("detail");
-		mv.addObject("movies", api.movieDetail(id));
-		return mv;
-
-	}	
-	
 	@RequestMapping("/index")
-	public ModelAndView runtimeLists() {
-		ModelAndView mv = new ModelAndView("index");
+	public ModelAndView index() {
+		return new ModelAndView("index");
+	}
+
+	@RequestMapping("/release-year")
+	public ModelAndView releaseYear1(@RequestParam("year") int year) {
 		List<Movie> bigList = new ArrayList<>();
-		int pageSize = 20;
+		int pageSize = 30;
+		ModelAndView mv = new ModelAndView("results");
 		for (int counter = 1; counter < pageSize; counter++) {
-			bigList.addAll(api.getRTGT(counter, 900));
+			String url = listBase + API_KEY + listMiddle + counter + releaseYear + year;
+			bigList.addAll(api.getMovieList(url));
 		}
-			mv.addObject("movies", bigList);
-			System.out.println(bigList);
 		mv.addObject("movies", bigList);
+		System.out.println(bigList);
+		mv.addObject("movies", bigList);
+		return mv;
+	}
+
+	@RequestMapping("/runtime")
+	public ModelAndView runtime(@RequestParam("lessThan") int lessThan, @RequestParam("greaterThan") int greaterThan) {
+		List<Movie> bigList = new ArrayList<>();
+		String url = "";
+		if (lessThan > 0 && greaterThan > 0) {
+			url += listBase + API_KEY + listMiddle + runtimeGT + greaterThan + runtimeLT + lessThan;
+		} else if (lessThan > 0) {
+			url += listBase + API_KEY + listMiddle + runtimeLT + lessThan;
+		} else
+			url += listBase + API_KEY + listMiddle + runtimeGT + greaterThan;
+		int pageSize = 20;
+		ModelAndView mv = new ModelAndView("results");
+		for (int counter = 1; counter < pageSize; counter++) {
+			bigList.addAll(api.getMovieList(url));
+		}
+		System.out.println(url);
+		mv.addObject("movies", bigList);
+		mv.addObject("movies", bigList);
+		return mv;
+	}
+
+	@RequestMapping("/title")
+	public ModelAndView listMovie(@RequestParam(value = "name", required = true) String title) {
+		List<Movie> bigList = new ArrayList<>();
+		ModelAndView mv = new ModelAndView("results");
+		String url = titleBase + API_KEY + titleMiddle + title;
+		bigList.addAll(api.getMovieList(url));
+		System.out.println(url);
+		mv.addObject("movies", bigList);
+		return mv;
+	}
+
+	@RequestMapping("/detail")
+	public ModelAndView movieDetail(@RequestParam("id") int id) {
+		ModelAndView mv = new ModelAndView("detail");
+		String url = detailBase + id + detailMiddle + API_KEY + detailEnd;
+		System.out.println(url);
+		mv.addObject("movies", api.movieDetail(id, url));
 		return mv;
 	}
 

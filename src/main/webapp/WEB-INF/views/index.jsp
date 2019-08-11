@@ -16,22 +16,26 @@
 
 		<h1>Movie Land</h1>
 
-	<table class="table">
-			<thead>
-				<tr>
-					<th>Rating</th><th>Hotel Name</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach var="each" items="${movies}">
-				<tr>
-					<td>${each.title}</td>
-				
-					
-				</tr>
-				</c:forEach>
-			</tbody>
-		</table>
+		<form action="/release-year?year=${year}">
+
+			<h3>Release Year</h3>
+			<input name="year" type="number" />
+			<button type="submit" class="btn btn-primary">Go!</button>
+		</form>
+		<form action="/runtime?lessThan=${lessThan}?greatThan=${greaterThan}">
+			<h3>Runtime</h3>
+			<h5>Less Than</h5>
+			<input name="lessThan" type="number" value="0" />
+			<h5>Greater Than</h5>
+			<input name="greaterThan" type="number" value="0" />
+			<button type="submit" class="btn btn-primary">Go!</button>
+		</form>
+		<form action="/title?name=${name}">
+			<h3>Title</h3>
+			<input name="name" />
+			<button type="submit" class="btn btn-primary">Go!</button>
+
+		</form>
 	</div>
 
 </body>
