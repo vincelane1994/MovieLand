@@ -36,9 +36,13 @@ public class MovieApiController {
 	@Autowired
 	MovieRepository dao;
 
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public ModelAndView index() {
-		return new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("index");
+		String url = listBase + API_KEY + listMiddle + 1;	
+		mv.addObject("movies", api.getMovieList(url));
+		System.out.println(api.getMovieList(url));
+		return mv;
 	}
 
 	@RequestMapping("/release-year")
@@ -50,8 +54,6 @@ public class MovieApiController {
 			String url = listBase + API_KEY + listMiddle + counter + releaseYear + year;
 			bigList.addAll(api.getMovieList(url));
 		}
-		mv.addObject("movies", bigList);
-		System.out.println(bigList);
 		mv.addObject("movies", bigList);
 		return mv;
 	}
@@ -71,8 +73,6 @@ public class MovieApiController {
 		for (int counter = 1; counter < pageSize; counter++) {
 			bigList.addAll(api.getMovieList(url));
 		}
-		System.out.println(url);
-		mv.addObject("movies", bigList);
 		mv.addObject("movies", bigList);
 		return mv;
 	}
@@ -83,16 +83,15 @@ public class MovieApiController {
 		ModelAndView mv = new ModelAndView("results");
 		String url = titleBase + API_KEY + titleMiddle + title;
 		bigList.addAll(api.getMovieList(url));
-		System.out.println(url);
 		mv.addObject("movies", bigList);
 		return mv;
 	}
 
 	@RequestMapping("/detail")
-	public ModelAndView movieDetail(@RequestParam("id") int id) {
+	public ModelAndView movieDetail(
+			@RequestParam("id") int id) {
 		ModelAndView mv = new ModelAndView("detail");
 		String url = detailBase + id + detailMiddle + API_KEY + detailEnd;
-		System.out.println(url);
 		mv.addObject("movies", api.movieDetail(id, url));
 		return mv;
 	}
@@ -101,7 +100,7 @@ public class MovieApiController {
 		String url = detailBase + id + detailMiddle + API_KEY + detailEnd;
 		Movie movie = api.movieDetail(id, url);
 		if(!isMovieOnList(movie)) {
-			dao.save(movie);;						
+			dao.save(movie);						
 		}
 		return new ModelAndView("redirect:/watchlist");
 	}

@@ -37,6 +37,13 @@
 
 		</form>
 	</div>
+	
+	<div class="posters">
+	<c:forEach var="each" items="${movies}">
+		<img
+        src="https://image.tmdb.org/t/p/original/${each.posterPath}" />
+	</c:forEach>
+	</div>
 
 </body>
 </html>

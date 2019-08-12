@@ -11,3 +11,7 @@ img {
 table {
 	width 20%;
 }
+
+.posters {
+	position:fixed; top:2%; right:2%;
+}
