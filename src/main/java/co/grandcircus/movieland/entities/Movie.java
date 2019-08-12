@@ -26,7 +26,7 @@ public class Movie {
 	private String releaseDate;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long movieId;
 	@JsonProperty("original_title")
 	private String originalTitle;
 	@JsonProperty("original_language")
@@ -44,6 +44,41 @@ public class Movie {
 	private String revenue;
 	private String homepage;
 	private String budget;
+	private Long id;
+	
+	
+	public Long getMovieId() {
+		return movieId;
+	}
+
+	public void setMovieId(Long movieId) {
+		this.movieId = movieId;
+	}
+
+	public Movie(String posterPath, Boolean adult, String overview, String releaseDate, Long id, String originalTitle,
+			String originalLanguage, String title, String backdropPath, Double popularity, Long voteCount,
+			Boolean video, Double voteAverage, Integer runtime, String revenue, String homepage, String budget) {
+		super();
+		this.posterPath = posterPath;
+		this.adult = adult;
+		this.overview = overview;
+		this.releaseDate = releaseDate;
+		this.id = id;
+		this.originalTitle = originalTitle;
+		this.originalLanguage = originalLanguage;
+		this.title = title;
+		this.backdropPath = backdropPath;
+		this.popularity = popularity;
+		this.voteCount = voteCount;
+		this.video = video;
+		this.voteAverage = voteAverage;
+		this.runtime = runtime;
+		this.revenue = revenue;
+		this.homepage = homepage;
+		this.budget = budget;
+	}
+	
+	public Movie() {};
 	public String getPosterPath() {
 		return posterPath;
 	}

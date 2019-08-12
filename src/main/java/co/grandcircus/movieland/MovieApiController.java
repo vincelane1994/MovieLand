@@ -1,22 +1,17 @@
 package co.grandcircus.movieland;
 
 import java.util.ArrayList;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.grandcircus.movieland.entities.*;
 import co.grandcircus.movieland.dao.ApiService;
+import co.grandcircus.movieland.dao.MovieRepository;
 import co.grandcircus.movieland.entities.Movie;
 
 @Controller
@@ -37,6 +32,9 @@ public class MovieApiController {
 
 	@Autowired
 	ApiService api;
+
+	@Autowired
+	MovieRepository dao;
 
 	@RequestMapping("/index")
 	public ModelAndView index() {
@@ -98,5 +96,37 @@ public class MovieApiController {
 		mv.addObject("movies", api.movieDetail(id, url));
 		return mv;
 	}
+	@RequestMapping("/watchlist/add")
+	public ModelAndView addToWatchlist(@RequestParam("id") Long id) {
+		String url = detailBase + id + detailMiddle + API_KEY + detailEnd;
+		Movie movie = api.movieDetail(id, url);
+		if(!isMovieOnList(movie)) {
+			dao.save(movie);;						
+		}
+		return new ModelAndView("redirect:/watchlist");
+	}
+	@RequestMapping("/watchlist")
+	public ModelAndView showWatchlist() {
+		List<Movie> movies = dao.findAll();
+		return new ModelAndView("watchlist", "movies", movies);
+	}
+	@RequestMapping("/remove")
+	public ModelAndView removeWatchlist(@RequestParam("id")long id) {
+		System.out.println(id);
+		Movie movie = dao.findById(id).get();
+		dao.delete(movie);
+		return new ModelAndView("redirect:/watchlist");
+	}
+	
+	public boolean isMovieOnList(Movie movie) {
+		List<Movie> movieList = dao.findAll();
+		for(Movie movies: movieList) {
+			if(movie.getTitle().equalsIgnoreCase(movies.getTitle())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }

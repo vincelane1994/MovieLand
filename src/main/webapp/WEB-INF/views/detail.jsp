@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/styles.css" />
-<link red="stylesheet"
+<link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" />
 </head>
 <body>
@@ -33,7 +33,9 @@
 			</tr>
 		</table>
 		<p>
-		<h4>Overview</h4>${movies.overview}</p>
+		<h4>Overview</h4>${movies.overview}<br>
+		<a href="/watchlist/add?id=${movies.id}"><button type="button" class="btn btn-outline-success">Add to watchlist</button></a>
+		</p>		
 	</div>
 </body>
 </html>

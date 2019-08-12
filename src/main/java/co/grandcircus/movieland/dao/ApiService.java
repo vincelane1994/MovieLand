@@ -32,4 +32,9 @@ public class ApiService {
 		System.out.println(movie);
 		return movie;
 	}
+	public Movie movieDetail(Long id, String url) {
+		Movie movie = restTemplate.getForObject(url, Movie.class);
+		System.out.println(movie);
+		return movie;
+	}
 }
