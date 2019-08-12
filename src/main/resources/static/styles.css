@@ -15,3 +15,9 @@ table {
 .posters {
 	position:fixed; top:2%; right:2%;
 }
+.tdr {
+	text-align:right;
+}
+.right {
+  float: right;
+}
