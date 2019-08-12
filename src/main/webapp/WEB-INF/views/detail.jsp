@@ -10,6 +10,10 @@
 	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" />
 </head>
 <body>
+	<ul class="ulnav">
+		<li class="linav"><a class="lianav" href="/">Home</a></li>
+		<li class="linav"><a class="lianav" href="/watchlist">Watchlist</a></li>
+	</ul>
 	<h1>${movies.title}</h1>
 	<a href="https://image.tmdb.org/t/p/original/${movies.posterPath}"><img
 		src="https://image.tmdb.org/t/p/original/${movies.posterPath}" /></a>

@@ -12,6 +12,10 @@
 <link href="/styles.css" rel="stylesheet" />
 </head>
 <body>
+	<ul class="ulnav">
+		<li class="linav"><a class="lianav" href="/">Home</a></li>
+		<li class="linav"><a class="lianav" href="/watchlist">Watchlist</a></li>
+	</ul>
 	<div class="container">
 
 		<h1>Movie Land</h1>
@@ -28,7 +32,8 @@
 					<tr>
 						<td><a href="/detail?id=${each.id}">${each.title}</a></td>
 						<td>${each.overview}</td>
-						<td><a href="/detail?id=${each.id}"><img class="img" src="https://image.tmdb.org/t/p/original/${each.posterPath}"/></a></td>
+						<td><a href="/detail?id=${each.id}"><img class="img"
+								src="https://image.tmdb.org/t/p/original/${each.posterPath}" /></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
