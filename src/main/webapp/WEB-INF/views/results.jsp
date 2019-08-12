@@ -28,6 +28,7 @@
 					<tr>
 						<td><a href="/detail?id=${each.id}">${each.title}</a></td>
 						<td>${each.overview}</td>
+						<td><a href="/detail?id=${each.id}"><img class="img" src="https://image.tmdb.org/t/p/original/${each.posterPath}"/></a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

@@ -21,3 +21,13 @@ table {
 .right {
   float: right;
 }
+.img {
+	width: auto;
+	height: 10%;
+	float: right;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
