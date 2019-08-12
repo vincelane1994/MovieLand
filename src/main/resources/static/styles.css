@@ -22,8 +22,8 @@ table {
   float: right;
 }
 .img {
-	width: auto;
-	height: 10%;
+	width: 125px;
+	height: 200px;
 	float: right;
 }
 .center {
